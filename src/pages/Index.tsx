@@ -114,57 +114,27 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => {
-              const isHealthEducation = feature.title === "Health Education";
-              
-              if (isHealthEducation) {
-                return (
-                  <Link key={index} to="/health-education">
-                    <Card className="border-0 shadow-soft hover:shadow-care transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-                      <CardHeader className="text-center pb-4">
-                        <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 ${
-                          feature.color === 'primary' ? 'bg-primary-soft' :
-                          feature.color === 'secondary' ? 'bg-secondary-soft' : 'bg-accent-soft'
-                        }`}>
-                          <feature.icon className={`h-8 w-8 ${
-                            feature.color === 'primary' ? 'text-primary' :
-                            feature.color === 'secondary' ? 'text-secondary' : 'text-accent'
-                          }`} />
-                        </div>
-                        <CardTitle className="text-lg">{feature.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <CardDescription className="text-sm leading-relaxed">
-                          {feature.description}
-                        </CardDescription>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                );
-              }
-              
-              return (
-                <Card key={index} className="border-0 shadow-soft hover:shadow-care transition-all duration-300 hover:-translate-y-1">
-                  <CardHeader className="text-center pb-4">
-                    <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 ${
-                      feature.color === 'primary' ? 'bg-primary-soft' :
-                      feature.color === 'secondary' ? 'bg-secondary-soft' : 'bg-accent-soft'
-                    }`}>
-                      <feature.icon className={`h-8 w-8 ${
-                        feature.color === 'primary' ? 'text-primary' :
-                        feature.color === 'secondary' ? 'text-secondary' : 'text-accent'
-                      }`} />
-                    </div>
-                    <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <CardDescription className="text-sm leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            {features.map((feature, index) => (
+              <Card key={index} className="border-0 shadow-soft hover:shadow-care transition-all duration-300 hover:-translate-y-1">
+                <CardHeader className="text-center pb-4">
+                  <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-4 ${
+                    feature.color === 'primary' ? 'bg-primary-soft' :
+                    feature.color === 'secondary' ? 'bg-secondary-soft' : 'bg-accent-soft'
+                  }`}>
+                    <feature.icon className={`h-8 w-8 ${
+                      feature.color === 'primary' ? 'text-primary' :
+                      feature.color === 'secondary' ? 'text-secondary' : 'text-accent'
+                    }`} />
+                  </div>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <CardDescription className="text-sm leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
