@@ -14,38 +14,43 @@ import {
   MapPin,
   Star
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import AIHealthAssistant from "@/components/AIHealthAssistant";
 
 const Dashboard = () => {
+  const { t } = useLanguage();
+  
   const quickActions = [
     {
       icon: MessageCircle,
-      title: "Chat with Doctor",
-      description: "Start WhatsApp conversation",
-      action: "Open WhatsApp",
+      title: t('chatWithDoctor'),
+      description: t('startWhatsapp'),
+      action: t('openWhatsapp'),
       color: "primary",
       urgent: false
     },
     {
       icon: Calendar,
-      title: "Book Appointment",
-      description: "Schedule your visit",
-      action: "Book Now",
+      title: t('bookAppointment'),
+      description: t('scheduleVisit'),
+      action: t('bookNow'),
       color: "secondary",
       urgent: false
     },
     {
       icon: Upload,
-      title: "Share Report",
-      description: "Upload medical reports",
-      action: "Upload",
+      title: t('shareReport'),
+      description: t('uploadMedical'),
+      action: t('upload'),
       color: "accent",
       urgent: false
     },
     {
       icon: Heart,
-      title: "Get Volunteer Help",
-      description: "Connect with local support",
-      action: "Find Help",
+      title: t('getVolunteerHelp'),
+      description: t('connectLocalSupport'),
+      action: t('findHelp'),
       color: "primary",
       urgent: true
     }
@@ -105,7 +110,7 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               <Heart className="h-8 w-8 text-primary" />
               <div>
-                <h1 className="text-2xl font-bold text-foreground">Welcome, Rajesh</h1>
+                <h1 className="text-2xl font-bold text-foreground">{t('welcome')}, Rajesh</h1>
                 <p className="text-sm text-muted-foreground flex items-center">
                   <MapPin className="h-4 w-4 mr-1" />
                   Khandwa Village, MP
@@ -113,13 +118,14 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex items-center space-x-2">
+              <LanguageSwitcher />
               <Badge variant="secondary" className="bg-secondary-soft text-secondary">
                 <Bell className="h-3 w-3 mr-1" />
-                3 Reminders
+                3 {t('reminders')}
               </Badge>
               <Button variant="outline" size="sm">
                 <Phone className="h-4 w-4 mr-2" />
-                Emergency
+                {t('emergency')}
               </Button>
             </div>
           </div>
@@ -129,7 +135,7 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Quick Actions */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-6">What do you need today?</h2>
+          <h2 className="text-2xl font-bold mb-6">{t('whatDoYouNeed')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickActions.map((action, index) => (
               <Card 
@@ -140,7 +146,7 @@ const Dashboard = () => {
               >
                 {action.urgent && (
                   <Badge className="absolute -top-2 -right-2 bg-accent text-accent-foreground">
-                    Urgent
+                    {t('urgent')}
                   </Badge>
                 )}
                 <CardHeader className="text-center pb-2">
@@ -167,16 +173,21 @@ const Dashboard = () => {
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* AI Health Assistant - Full Width */}
+          <div className="lg:col-span-3">
+            <AIHealthAssistant />
+          </div>
+          
           {/* Available Doctors */}
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <MessageCircle className="h-5 w-5 mr-2 text-primary" />
-                  Available Doctors
+                  {t('availableDoctors')}
                 </CardTitle>
                 <CardDescription>
-                  Connect instantly via WhatsApp or schedule a call
+                  {t('connectInstantly')}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -189,7 +200,7 @@ const Dashboard = () => {
                           variant={doctor.status === 'online' ? 'default' : 'secondary'}
                           className={doctor.status === 'online' ? 'bg-secondary text-secondary-foreground' : ''}
                         >
-                          {doctor.status}
+                          {t(doctor.status)}
                         </Badge>
                       </div>
                       <p className="text-sm text-muted-foreground mb-1">{doctor.specialty}</p>
@@ -199,7 +210,7 @@ const Dashboard = () => {
                           {doctor.rating}
                         </div>
                         <div>
-                          Languages: {doctor.languages.join(", ")}
+                          {t('languages')}: {doctor.languages.join(", ")}
                         </div>
                       </div>
                     </div>
@@ -223,7 +234,7 @@ const Dashboard = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <Clock className="h-5 w-5 mr-2 text-secondary" />
-                  Recent Activity
+                  {t('recentActivity')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -247,21 +258,21 @@ const Dashboard = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <BookOpen className="h-5 w-5 mr-2 text-accent" />
-                  Health Tips
+                  {t('healthTips')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   <div className="p-3 bg-accent-soft rounded-lg">
                     <h4 className="font-semibold text-accent text-sm mb-1">
-                      Monsoon Health Care
+                      {t('monsoonHealthCare')}
                     </h4>
                     <p className="text-xs text-accent/80">
-                      Tips to stay healthy during rainy season
+                      {t('monsoonTips')}
                     </p>
                   </div>
                   <Button variant="outline" size="sm" className="w-full">
-                    View All Tips
+                    {t('viewAllTips')}
                   </Button>
                 </div>
               </CardContent>
