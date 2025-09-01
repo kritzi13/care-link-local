@@ -2,56 +2,60 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone, MessageCircle, Upload, Calendar, Pill, Heart, BookOpen, Bell } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import heroImage from "@/assets/hero-healthcare.jpg";
 
 const Index = () => {
+  const { t } = useLanguage();
+  
   const features = [
     {
       icon: Phone,
-      title: "Phone Registration",
-      description: "Simple phone-based signup with local helper assistance",
+      title: t('phoneRegistration'),
+      description: t('phoneRegistrationDesc'),
       color: "primary"
     },
     {
       icon: MessageCircle,
-      title: "WhatsApp Doctors",
-      description: "Connect with doctors via familiar WhatsApp chats and calls",
+      title: t('whatsappDoctors'),
+      description: t('whatsappDoctorsDesc'),
       color: "secondary"
     },
     {
       icon: Upload,
-      title: "Upload Reports",
-      description: "Share medical reports and symptoms easily through photos",
+      title: t('uploadReports'),
+      description: t('uploadReportsDesc'),
       color: "accent"
     },
     {
       icon: Calendar,
-      title: "Book Appointments",
-      description: "Schedule doctor visits with simple one-click booking",
+      title: t('bookAppointments'),
+      description: t('bookAppointmentsDesc'),
       color: "primary"
     },
     {
       icon: Pill,
-      title: "Prescriptions",
-      description: "Access prescriptions and find nearby pharmacies",
+      title: t('prescriptions'),
+      description: t('prescriptionsDesc'),
       color: "secondary"
     },
     {
       icon: Heart,
-      title: "Volunteer Help",
-      description: "Connect with NGOs and volunteers for support",
+      title: t('volunteerHelp'),
+      description: t('volunteerHelpDesc'),
       color: "accent"
     },
     {
       icon: BookOpen,
-      title: "Health Education",
-      description: "Learn about health, nutrition, and medicine in local language",
+      title: t('healthEducation'),
+      description: t('healthEducationDesc'),
       color: "primary"
     },
     {
       icon: Bell,
-      title: "Smart Reminders",
-      description: "Get appointment and medication reminders via WhatsApp",
+      title: t('smartReminders'),
+      description: t('smartRemindersDesc'),
       color: "secondary"
     }
   ];
@@ -64,12 +68,15 @@ const Index = () => {
           <div className="flex items-center space-x-2">
             <Heart className="h-8 w-8 text-primary" />
             <h1 className="text-2xl font-bold bg-gradient-care bg-clip-text text-transparent">
-              CareLink
+              {t('carelink')}
             </h1>
           </div>
-          <Button variant="healthcare" size="lg">
-            <Link to="/register">Get Started</Link>
-          </Button>
+          <div className="flex items-center space-x-3">
+            <LanguageSwitcher />
+            <Button variant="healthcare" size="lg">
+              <Link to="/register">{t('getStarted')}</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -82,19 +89,17 @@ const Index = () => {
         ></div>
         <div className="relative container mx-auto px-4 text-center text-white">
           <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Healthcare for
-            <span className="block text-accent-soft">Every Village</span>
+            {t('healthcareForEveryVillage')}
           </h2>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
-            Connecting rural communities with doctors through WhatsApp. 
-            Simple, familiar, and accessible healthcare for everyone.
+            {t('heroDescription')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="xl" className="shadow-care" asChild>
-              <Link to="/register">Start Registration</Link>
+              <Link to="/register">{t('startRegistration')}</Link>
             </Button>
             <Button variant="outline-white" size="xl" asChild>
-              <Link to="/dashboard">Connect with Doctor</Link>
+              <Link to="/dashboard">{t('connectWithDoctor')}</Link>
             </Button>
           </div>
         </div>
@@ -105,17 +110,16 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h3 className="text-4xl font-bold mb-4">
-              Simple Healthcare, 
-              <span className="text-primary"> Powerful Impact</span>
+              {t('simpleHealthcarePowerfulImpact')}
             </h3>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to access quality healthcare, designed for rural communities
+              {t('featuresDescription')}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => {
-              const isHealthEducation = feature.title === "Health Education";
+              const isHealthEducation = feature.title === t('healthEducation');
               
               if (isHealthEducation) {
                 return (
@@ -173,13 +177,13 @@ const Index = () => {
       <section className="py-20 bg-gradient-care">
         <div className="container mx-auto px-4 text-center text-white">
           <h3 className="text-4xl font-bold mb-6">
-            Ready to Transform Rural Healthcare?
+            {t('readyToTransform')}
           </h3>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of patients already connected to quality healthcare through CareLink
+            {t('ctaDescription')}
           </p>
           <Button variant="hero" size="xl" className="shadow-care" asChild>
-            <Link to="/register">Start Your Journey</Link>
+            <Link to="/register">{t('startYourJourney')}</Link>
           </Button>
         </div>
       </section>
@@ -189,10 +193,10 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Heart className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">CareLink</span>
+            <span className="text-xl font-bold">{t('carelink')}</span>
           </div>
           <p className="text-muted-foreground">
-            Empowering rural communities with accessible healthcare
+            {t('empoweringCommunities')}
           </p>
         </div>
       </footer>

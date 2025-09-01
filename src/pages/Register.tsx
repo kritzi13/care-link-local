@@ -4,8 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Phone, Heart, Users, Shield } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Register = () => {
+  const { t } = useLanguage();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     phone: "",
@@ -31,11 +34,14 @@ const Register = () => {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Heart className="h-8 w-8 text-white" />
-            <h1 className="text-3xl font-bold text-white">CareLink</h1>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-2">
+              <Heart className="h-8 w-8 text-white" />
+              <h1 className="text-3xl font-bold text-white">{t('carelink')}</h1>
+            </div>
+            <LanguageSwitcher />
           </div>
-          <p className="text-white/90">Join thousands getting better healthcare</p>
+          <p className="text-white/90">{t('joinThousands')}</p>
         </div>
 
         {/* Progress Indicator */}
@@ -59,14 +65,14 @@ const Register = () => {
         <Card className="shadow-care">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">
-              {step === 1 && "Welcome to CareLink"}
-              {step === 2 && "Tell us about yourself"}
-              {step === 3 && "Almost there!"}
+              {step === 1 && t('welcomeToCareLink')}
+              {step === 2 && t('tellUsAboutYourself')}
+              {step === 3 && t('almostThere')}
             </CardTitle>
             <CardDescription>
-              {step === 1 && "Enter your phone number to get started"}
-              {step === 2 && "Help us provide better care"}
-              {step === 3 && "Connect with local helpers"}
+              {step === 1 && t('enterPhoneToStart')}
+              {step === 2 && t('helpUsProvide')}
+              {step === 3 && t('connectWithHelpers')}
             </CardDescription>
           </CardHeader>
           
@@ -74,7 +80,7 @@ const Register = () => {
             {step === 1 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">{t('phoneNumber')}</Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
@@ -92,8 +98,8 @@ const Register = () => {
                   <div className="flex items-start space-x-2">
                     <Shield className="h-5 w-5 text-primary mt-0.5" />
                     <div>
-                      <p className="text-sm font-medium text-primary">Your privacy is protected</p>
-                      <p className="text-xs text-primary/80">We only use your number to connect you with doctors</p>
+                      <p className="text-sm font-medium text-primary">{t('privacyProtected')}</p>
+                      <p className="text-xs text-primary/80">{t('privacyDescription')}</p>
                     </div>
                   </div>
                 </div>
@@ -103,31 +109,31 @@ const Register = () => {
             {step === 2 && (
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name">{t('fullName')}</Label>
                   <Input
                     id="name"
-                    placeholder="Enter your full name"
+                    placeholder={t('enterFullName')}
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="age">Age</Label>
+                  <Label htmlFor="age">{t('age')}</Label>
                   <Input
                     id="age"
                     type="number"
-                    placeholder="Your age"
+                    placeholder={t('yourAge')}
                     value={formData.age}
                     onChange={(e) => handleInputChange("age", e.target.value)}
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="village">Village/Area</Label>
+                  <Label htmlFor="village">{t('villageArea')}</Label>
                   <Input
                     id="village"
-                    placeholder="Your village or area name"
+                    placeholder={t('yourVillage')}
                     value={formData.village}
                     onChange={(e) => handleInputChange("village", e.target.value)}
                   />
@@ -139,18 +145,18 @@ const Register = () => {
               <div className="space-y-4">
                 <div className="bg-secondary-soft p-6 rounded-lg text-center">
                   <Users className="h-12 w-12 text-secondary mx-auto mb-4" />
-                  <h3 className="font-semibold text-secondary mb-2">Local Helper Available</h3>
+                  <h3 className="font-semibold text-secondary mb-2">{t('localHelperAvailable')}</h3>
                   <p className="text-sm text-secondary/80 mb-4">
-                    Rajesh Kumar from your area is ready to help you complete your registration and answer any questions.
+                    {t('helperDescription')}
                   </p>
                   <Button variant="secondary" size="sm" className="mb-2">
-                    Call Helper: +91 98765 43210
+                    {t('callHelper')}
                   </Button>
                 </div>
                 
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground mb-4">
-                    Or continue on your own - you're all set!
+                    {t('continueOnYour')}
                   </p>
                 </div>
               </div>
@@ -159,7 +165,7 @@ const Register = () => {
             <div className="flex justify-between pt-4">
               {step > 1 && (
                 <Button variant="outline" onClick={prevStep}>
-                  Back
+                  {t('back')}
                 </Button>
               )}
               
@@ -168,7 +174,7 @@ const Register = () => {
                 onClick={step === 3 ? () => window.location.href = "/dashboard" : nextStep}
                 className="ml-auto"
               >
-                {step === 3 ? "Enter CareLink" : "Continue"}
+                {step === 3 ? t('enterCareLink') : t('continue')}
               </Button>
             </div>
           </CardContent>
@@ -176,7 +182,7 @@ const Register = () => {
 
         <div className="text-center mt-6">
           <p className="text-white/80 text-sm">
-            Need help? Call our support: <span className="font-medium">1800-CARE-LINK</span>
+            {t('needHelp')}
           </p>
         </div>
       </div>
