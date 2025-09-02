@@ -17,6 +17,7 @@ import {
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import AIHealthAssistant from "@/components/AIHealthAssistant";
+import PrescriptionManager from "@/components/PrescriptionManager";
 
 const Dashboard = () => {
   const { t } = useLanguage();
@@ -176,6 +177,11 @@ const Dashboard = () => {
           {/* AI Health Assistant - Full Width */}
           <div className="lg:col-span-3">
             <AIHealthAssistant />
+          </div>
+
+          {/* Prescription Manager - Full Width */}
+          <div className="lg:col-span-3">
+            <PrescriptionManager />
           </div>
           
           {/* Available Doctors */}
