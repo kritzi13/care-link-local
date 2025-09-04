@@ -303,6 +303,34 @@ const translations = {
 
     // Prescription translations
     myPrescriptions: "मेरी दवाएं",
+    
+    // Gamification & Community translations
+    healthChampion: "स्वास्थ्य चैंपियन",
+    completedHealthChecks: "स्वास्थ्य जांच पूरी की",
+    medicationMaster: "दवा मास्टर",
+    perfectMedicationAdherence: "पूर्ण दवा अनुपालन",
+    communityHelper: "समुदायिक सहायक",
+    helpedFamilyMembers: "परिवारजनों की मदद की",
+    consistencyKing: "निरंतरता राजा",
+    fifteenDayStreak: "15 दिन लगातार",
+    pointsEarned: "अंक अर्जित",
+    totalPoints: "कुल अंक",
+    badgesEarned: "बैज अर्जित",
+    activeChallenges: "सक्रिय चुनौतियां",
+    dayStreak: "दिन लगातार",
+    myBadges: "मेरे बैज",
+    earned: "अर्जित",
+    complete: "पूर्ण",
+    points: "अंक",
+    daysLeft: "दिन बचे",
+    participants: "प्रतिभागी",
+    recentAchievements: "हाल की उपलब्धियां",
+    pts: "अंक",
+    
+    // More translations for all new features
+    messages: "संदेश",
+    searchChats: "चैट खोजें",
+    typeMessage: "संदेश टाइप करें",
     manageMedications: "अपनी दवाओं और रिफिल का प्रबंधन करें",
     prescriptionDetails: "दवा विवरण",
     dosageInstructions: "खुराक निर्देश",
